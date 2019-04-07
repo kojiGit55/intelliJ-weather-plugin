@@ -16,11 +16,12 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <applicationService serviceInterface="ConfigService" serviceImplementation="ConfigService"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <group id="MyPlugin.SampleMenu" text="Greeting" description="Greeting menu">
+        <group id="MyPlugin.SampleMenu" text="Weather" description="Weather menu">
             <add-to-group group-id="MainMenu" anchor="last"/>
             <action id="Myplugin.Textboxes" class="WeatherAction" text="Weather" description="Says hello"/>
         </group>
