@@ -3,8 +3,8 @@ plugins {
     id 'org.jetbrains.intellij' version '0.4.7'
 }
 
-group 'com.jetbrains'
-version '1.0-SNAPSHOT'
+group 'com.github.kojiGit55'
+version '1.0'
 
 sourceCompatibility = 1.8
 
@@ -20,9 +20,13 @@ dependencies {
 
 intellij {
     version '2018.2'
+    pluginName 'SimpleWeather'
+    intellij.updateSinceUntilBuild false
 }
 patchPluginXml {
-    changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+    changeNotes """Initial release"""
+}
+publishPlugin {
+    username intellijPublishUsername
+    password intellijPublishPassword
 }

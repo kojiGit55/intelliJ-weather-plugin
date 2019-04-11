@@ -17,6 +17,7 @@ Thumbs.db
 # Gradle
 .gradle
 !gradle-wrapper.jar
+gradle.properties
 
 # Maven
 target

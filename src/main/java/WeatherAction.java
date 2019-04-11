@@ -1,5 +1,4 @@
 import com.intellij.openapi.actionSystem.*;
-import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import okhttp3.*;
@@ -14,12 +13,7 @@ public class WeatherAction extends AnAction {
 
     public void actionPerformed(AnActionEvent event) {
         Project project = event.getProject();
-        ConfigService pc = ServiceManager.getService(ConfigService.class);
-        if (pc.location == null) {
-            String location = Messages.showInputDialog(project, "Where is your location?\nexample: Tokyo", "Input your location", Messages.getQuestionIcon());
-            pc.location = location;
-        }
-        String cityName = pc.location;
+        String cityName = Messages.showInputDialog(project, "Where is your location?\n\nExample: Tokyo", "Input your location", null);
 
         OkHttpClient client = new OkHttpClient();
         String apiKey = "";
@@ -29,9 +23,9 @@ public class WeatherAction extends AnAction {
         try (Response response = call.execute()) {
             if (!response.isSuccessful()) {
                 if (response.code() == 404) {
-                    Messages.showMessageDialog(project, "city not found", "current weather", null);
+                    Messages.showMessageDialog(project, "city not found", "Current Weather", null);
                 } else {
-                    Messages.showMessageDialog(project, "error!!", "current weather", null);
+                    Messages.showMessageDialog(project, "error!!", "Current Weather", null);
                 }
             }
 
@@ -41,13 +35,11 @@ public class WeatherAction extends AnAction {
                 JSONObject jsonObj = new JSONObject(bodyString);
                 JSONArray w = jsonObj.getJSONArray("weather");
                 String description = w.getJSONObject(0).getString("description");
-//                String icon = w.getJSONObject(0).getString("icon");
-//                ImageIcon imageIcon = new ImageIcon("http://openweathermap.org/img/w/" + icon + ".png");
 
-                Messages.showMessageDialog(project, description, "current weather", null);
+                Messages.showMessageDialog(project, description, "Current Weather", null);
             }
         } catch (IOException e) {
-            Messages.showMessageDialog(project, e.getMessage(), "current weather", null);
+            Messages.showMessageDialog(project, e.getMessage(), "Current Weather", null);
         }
     }
 }

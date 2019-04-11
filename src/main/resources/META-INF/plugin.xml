@@ -1,29 +1,26 @@
 <idea-plugin>
-    <id>com.jetbrains.my-plugin</id>
-    <name>Plugin display name here</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <id>com.github.kojiGit55</id>
+    <name>SimpleWeather</name>
+    <vendor url="https://github.com/kojiGit55">Koji Nakashima</vendor>
 
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    <p>This plugin shows current weather from OpenWeatherMap.</p>
+    <p>Default keymap is C-w</p>
     ]]></description>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
-    <!-- uncomment to enable plugin in all products
     <depends>com.intellij.modules.lang</depends>
-    -->
-
-    <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
-        <applicationService serviceInterface="ConfigService" serviceImplementation="ConfigService"/>
-    </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <group id="MyPlugin.SampleMenu" text="Weather" description="Weather menu">
+        <group id="MyPlugin.SampleMenu" text="SimpleWeather" description="Weather menu">
             <add-to-group group-id="MainMenu" anchor="last"/>
-            <action id="Myplugin.Textboxes" class="WeatherAction" text="Weather" description="Says hello"/>
+            <action id="Myplugin.Textboxes" class="WeatherAction" text="See Weather" description="Shows weather">
+                <keyboard-shortcut first-keystroke="ctrl W" keymap="Mac OS X 10.5+"/>
+                <keyboard-shortcut first-keystroke="ctrl W" keymap="Mac OS X"/>
+                <keyboard-shortcut first-keystroke="ctrl W" keymap="$default"/>
+            </action>
         </group>
     </actions>
+
+    <idea-version since-build="182.3684.101"/>
 </idea-plugin>
