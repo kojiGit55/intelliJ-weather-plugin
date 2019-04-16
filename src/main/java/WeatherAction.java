@@ -27,6 +27,7 @@ public class WeatherAction extends AnAction {
                 } else {
                     Messages.showMessageDialog(project, "error!!", "Current Weather", null);
                 }
+                return;
             }
 
             ResponseBody body = response.body();
